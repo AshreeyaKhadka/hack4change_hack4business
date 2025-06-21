@@ -1,9 +1,14 @@
 import 'package:flutter/material.dart';
 // Import your existing dart files here
-// import 'screens/admin_dashboard.dart';
-// import 'screens/buyer_dashboard.dart';
-// import 'screens/farmer_dashboard.dart';
-// import 'screens/login_screen.dart';
+
+import 'screens/admin_dashboard.dart';
+import 'screens/buyer_dashboard.dart';
+import 'screens/farmer_dashboard.dart';
+import 'screens/login_screen.dart';
+import 'screens/buyer_order_history_screen.dart';
+import 'screens/profile_screen.dart';
+
+
 
 void main() {
   runApp(const FarmConnectApp());
@@ -31,6 +36,9 @@ class FarmConnectApp extends StatelessWidget {
         '/admin': (context) => const AdminDashboard(),
         '/farmer': (context) => const FarmerDashboard(),
         '/buyer': (context) => const BuyerDashboard(),
+        '/buyer/order-history': (context) => const BuyerOrderHistoryScreen(),
+        '/buyer/profile': (context) => ProfileScreen(),
+
       },
     );
   }
