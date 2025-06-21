@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'buyer_order_history_screen.dart';
+import 'profile_screen.dart';
+
 
 class BuyerDashboard extends StatelessWidget {
   @override
@@ -36,22 +39,24 @@ class BuyerDashboard extends StatelessWidget {
               ),
             ),
             Card(
-              child: ListTile(
-                leading: Icon(Icons.shopping_cart, color: Colors.blue),
-                title: Text('My Cart'),
-                subtitle: Text('View items in your cart'),
-                onTap: () {
-                  // TODO: Navigate to cart screen
-                },
-              ),
-            ),
+  child: ListTile(
+    leading: Icon(Icons.shopping_cart, color: Colors.blue),
+    title: Text('My Cart'),
+    subtitle: Text('View items in your cart'),
+    onTap: () {
+      // TODO: Navigate to cart screen
+    },
+  ),
+),
+
             Card(
               child: ListTile(
                 leading: Icon(Icons.history, color: Colors.orange),
                 title: Text('Order History'),
                 subtitle: Text('View your past orders'),
                 onTap: () {
-                  // TODO: Navigate to order history screen
+  Navigator.pushNamed(context, '/buyer/order-history');
+  
                 },
               ),
             ),
@@ -61,7 +66,8 @@ class BuyerDashboard extends StatelessWidget {
                 title: Text('Profile'),
                 subtitle: Text('Manage your profile'),
                 onTap: () {
-                  // TODO: Navigate to profile screen
+  Navigator.pushNamed(context, '/buyer/profile');
+
                 },
               ),
             ),
@@ -71,3 +77,4 @@ class BuyerDashboard extends StatelessWidget {
     );
   }
 }
+
