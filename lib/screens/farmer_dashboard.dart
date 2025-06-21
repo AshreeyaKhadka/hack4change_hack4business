@@ -1,72 +1,52 @@
 import 'package:flutter/material.dart';
 
 class FarmerDashboard extends StatelessWidget {
+  final VoidCallback onAddCropTap;
+  const FarmerDashboard({super.key, required this.onAddCropTap});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Farmer Dashboard'),
-        actions: [
-          IconButton(
-            icon: Icon(Icons.logout),
-            onPressed: () {
-              Navigator.pushReplacementNamed(context, '/');
-            },
-          ),
-        ],
+        title: const Text('Farmer Dashboard'),
+        backgroundColor: Colors.orange,
       ),
       body: Padding(
-        padding: EdgeInsets.all(16),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+        padding: const EdgeInsets.all(16),
+        child: GridView.count(
+          crossAxisCount: 2,
+          crossAxisSpacing: 16,
+          mainAxisSpacing: 16,
           children: [
-            Text(
-              'Welcome, Farmer!',
-              style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
-            ),
-            SizedBox(height: 20),
-            Card(
-              child: ListTile(
-                leading: Icon(Icons.add_circle, color: Colors.green),
-                title: Text('Add New Crop'),
-                subtitle: Text('List your crops for sale'),
-                onTap: () {
-                  // TODO: Navigate to add crop screen
-                },
-              ),
-            ),
-            Card(
-              child: ListTile(
-                leading: Icon(Icons.list, color: Colors.blue),
-                title: Text('My Crops'),
-                subtitle: Text('View and manage your listings'),
-                onTap: () {
-                  // TODO: Navigate to my crops screen
-                },
-              ),
-            ),
-            Card(
-              child: ListTile(
-                leading: Icon(Icons.shopping_cart, color: Colors.orange),
-                title: Text('Orders'),
-                subtitle: Text('View incoming orders'),
-                onTap: () {
-                  // TODO: Navigate to orders screen
-                },
-              ),
-            ),
-            Card(
-              child: ListTile(
-                leading: Icon(Icons.person, color: Colors.purple),
-                title: Text('Profile'),
-                subtitle: Text('Manage your profile'),
-                onTap: () {
-                  // TODO: Navigate to profile screen
-                },
-              ),
-            ),
+            _buildCard(Icons.add_circle, 'Add Crop', 'Add a new crop',
+                Colors.green, onAddCropTap),
+            _buildCard(Icons.list, 'My Crops', 'View crop list', Colors.blue,
+                () {
+              Navigator.pushNamed(context, '/my-crops');
+            }),
           ],
         ),
+      ),
+    );
+  }
+
+  Widget _buildCard(IconData icon, String title, String subtitle, Color color,
+      VoidCallback onTap) {
+    return Card(
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+      elevation: 4,
+      child: InkWell(
+        borderRadius: BorderRadius.circular(12),
+        onTap: onTap,
+        child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
+          Icon(icon, size: 40, color: color),
+          const SizedBox(height: 8),
+          Text(title,
+              style:
+                  const TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
+          const SizedBox(height: 4),
+          Text(subtitle, textAlign: TextAlign.center),
+        ]),
       ),
     );
   }
